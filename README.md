@@ -1,4 +1,4 @@
-[![VALORANT Status Discord Bot](https://imagedelivery.net/5MYSbk45M80qAwecrlKzdQ/8a1a495c-2598-44a1-89d9-ed4a61955200/preview)](https://github.com/Zinedinarnaut/Valorant-Status-Checker)
+[![VALORANT Status Discord Bot](https://toppng.com/uploads/preview/valorant-logo-black-11608280059ccj8cbjenx.png)](https://github.com/Zinedinarnaut/Valorant-Status-Checker)
 
 **VALORANT Status Discord Bot**
 
