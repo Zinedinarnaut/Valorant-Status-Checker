@@ -83,4 +83,4 @@ async function fetchDataAndSendToDiscord() {
 }
 
 // Fetch data and send to Discord every 10 seconds
-setInterval(fetchDataAndSendToDiscord, 5000);
+setInterval(fetchDataAndSendToDiscord, 180000);
