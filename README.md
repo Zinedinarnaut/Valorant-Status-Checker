@@ -1,6 +1,4 @@
-[![VALORANT Status Discord Bot](https://toppng.com/uploads/preview/valorant-logo-black-11608280059ccj8cbjenx.png)](https://github.com/Zinedinarnaut/Valorant-Status-Checker)
-
-**VALORANT Status Discord Bot**
+**VALORANT Status Checker Bot**
 
 ---
 
