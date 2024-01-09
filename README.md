@@ -44,8 +44,8 @@ Open index.js:
 
 ```javascript
 
-const discordWebhookUrl = 'YOUR_DISCORD_WEBHOOK_URL';
-Replace 'YOUR_DISCORD_WEBHOOK_URL' with the actual Discord webhook URL.
+const discordWebhookUrl = process.env.DISCORD_WEBHOOK_URL;
+Go to the .env file and open it up and replace DISCORD_WEBHOOK_URL=YOUR_DISCORD_WEBHOOK_URL with your webhook.
 ```
 
 # Usage
