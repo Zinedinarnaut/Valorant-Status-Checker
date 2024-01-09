@@ -8,6 +8,8 @@ const discordWebhookUrl = process.env.DISCORD_WEBHOOK_URL; // Replace with your 
 
 async function fetchDataAndSendToDiscord() {
     try {
+        console.log('Fetching data from Riot Games...'); // Log message to indicate data fetching
+
         const browser = await puppeteer.launch({ headless: 'new' });
         const page = await browser.newPage();
 
@@ -38,7 +40,6 @@ async function fetchDataAndSendToDiscord() {
                 };
             })
         );
-
 
         // Customize the appearance of the Discord embed
         const discordEmbed = {
