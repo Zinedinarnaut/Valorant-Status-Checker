@@ -25,7 +25,7 @@ This project is a Discord bot that fetches and provides automated status updates
 1. Clone the repository:
 
 ```bash
-   git clone https://github.com/your-username/valorant-status-bot.git
+   git clone https://github.com/Zinedinarnaut/Valorant-Status-Checker.git
 ```
 
 ### Navigate to the project directory:
