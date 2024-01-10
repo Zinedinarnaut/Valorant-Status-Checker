@@ -11,8 +11,15 @@ async function fetchDataAndSendToDiscord() {
         console.log('Fetching data from Riot Games...'); // Log message to indicate data fetching
 
         const browser = await puppeteer.launch({
-            headless: "new", // Use the new headless mode
-            args: ["--no-sandbox"], // Add this line to disable the sandbox
+            args: [
+                '--disable-gpu',
+                '--disable-dev-shm-usage',
+                '--disable-setuid-sandbox',
+                '--no-first-run',
+                '--no-sandbox',
+                '--no-zygote',
+                '--single-process',
+            ]
         });
         const page = await browser.newPage();
 
