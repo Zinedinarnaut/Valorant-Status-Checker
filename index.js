@@ -10,7 +10,10 @@ async function fetchDataAndSendToDiscord() {
     try {
         console.log('Fetching data from Riot Games...'); // Log message to indicate data fetching
 
-        const browser = await puppeteer.launch({ headless: true, executablePath: '/usr/bin/chromium-browser' });
+        const browser = await puppeteer.launch({
+            headless: "new", // Use the new headless mode
+            args: ["--no-sandbox"], // Add this line to disable the sandbox
+        });
         const page = await browser.newPage();
 
         await page.goto(url, { waitUntil: 'domcontentloaded' });
@@ -85,4 +88,4 @@ async function fetchDataAndSendToDiscord() {
 
 
 // Fetch data and send to Discord every 10 seconds
-setInterval(fetchDataAndSendToDiscord, 180000);
+setInterval(fetchDataAndSendToDiscord, 30 * 60 * 1000);
