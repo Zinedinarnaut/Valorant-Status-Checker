@@ -10,7 +10,7 @@ async function fetchDataAndSendToDiscord() {
     try {
         console.log('Fetching data from Riot Games...'); // Log message to indicate data fetching
 
-        const browser = await puppeteer.launch({ headless: 'new' });
+        const browser = await puppeteer.launch({ headless: true, executablePath: '/usr/bin/chromium-browser' });
         const page = await browser.newPage();
 
         await page.goto(url, { waitUntil: 'domcontentloaded' });
@@ -71,10 +71,9 @@ async function fetchDataAndSendToDiscord() {
             });
         }
 
-        // Send the Discord embed
         await axios.post(discordWebhookUrl, {
             embeds: [discordEmbed],
-        });
+        }, { timeout: 5000 }); // Adjust the timeout value as needed
 
         // Close the browser
         await browser.close();
@@ -82,6 +81,8 @@ async function fetchDataAndSendToDiscord() {
         console.error(`Error: ${error}`);
     }
 }
+
+
 
 // Fetch data and send to Discord every 10 seconds
 setInterval(fetchDataAndSendToDiscord, 180000);
