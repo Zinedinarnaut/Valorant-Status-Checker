@@ -31,7 +31,7 @@ This project is a Discord bot that fetches and provides automated status updates
 ### Navigate to the project directory:
 
 ```bash
-cd valorant-status-bot
+cd valorant-status-checker
 ```
 
 ### Install dependencies:
