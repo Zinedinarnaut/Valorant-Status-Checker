@@ -37,6 +37,11 @@ async function fetchDataAndSendToDiscord() {
 
         // Set User-Agent
         await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36');
+        await page.evaluateOnNewDocument(() => {
+            Object.defineProperty(navigator, 'webdriver', {
+                get: () => false,
+            });
+        });
 
         const url = 'https://status.riotgames.com/valorant?region=ap&locale=en_US';
         const discordWebhookUrl = process.env.DISCORD_WEBHOOK_URL;
