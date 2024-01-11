@@ -1,27 +1,33 @@
-require('dotenv').config(); // Add this line at the top to load environment variables
+import puppeteerExtra from 'puppeteer-extra';
+import stealthPlugin from 'puppeteer-extra-plugin-stealth';
+import chromium from '@sparticuz/chromium';
+import axios from 'axios';
 
-const puppeteer = require('puppeteer');
-const axios = require('axios');
-
-const url = 'https://status.riotgames.com/valorant?region=ap&locale=en_US';
-const discordWebhookUrl = process.env.DISCORD_WEBHOOK_URL; // Replace with your actual Discord webhook URL
+puppeteerExtra.use(stealthPlugin());
 
 async function fetchDataAndSendToDiscord() {
     try {
         console.log('Fetching data from Riot Games...'); // Log message to indicate data fetching
 
-        const browser = await puppeteer.launch({
-            args: [
-                '--disable-gpu',
-                '--disable-dev-shm-usage',
-                '--disable-setuid-sandbox',
-                '--no-first-run',
-                '--no-sandbox',
-                '--no-zygote',
-                '--single-process',
-            ]
-        });
+        const devBrowser = {
+            headless: 'new',
+        };
+
+        const prodBrowser = {
+            args: chromium.args,
+            defaultViewport: chromium.defaultViewport,
+            executablePath: await chromium.executablePath(),
+            headless: chromium.headless,
+            ignoreHTTPSErrors: true,
+        };
+
+        const browser = await puppeteerExtra.launch(
+            process.env.NODE_ENV === 'development' ? devBrowser : prodBrowser
+        );
         const page = await browser.newPage();
+
+        const url = 'https://status.riotgames.com/valorant?region=ap&locale=en_US';
+        const discordWebhookUrl = process.env.DISCORD_WEBHOOK_URL;
 
         await page.goto(url, { waitUntil: 'domcontentloaded' });
 
@@ -92,7 +98,6 @@ async function fetchDataAndSendToDiscord() {
     }
 }
 
-
-
-// Fetch data and send to Discord every 10 seconds
-setInterval(fetchDataAndSendToDiscord, 30 * 60 * 1000);
+// Fetch data and send to Discord every 5 seconds (adjust as needed)
+setInterval(fetchDataAndSendToDiscord, 5000);
+/*setInterval(fetchDataAndSendToDiscord, 10 * 60 * 1000);*/

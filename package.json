@@ -1,8 +1,9 @@
 {
-  "name": "valorant-job-scraper",
+  "name": "valorant-status-checker",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -10,10 +11,14 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@sparticuz/chromium": "^119.0.2",
     "axios": "^1.6.5",
     "cheerio": "^1.0.0-rc.12",
     "dotenv": "^16.3.1",
+    "nodemon": "^3.0.2",
     "puppeteer": "^21.7.0",
+    "puppeteer-extra": "^3.3.6",
+    "puppeteer-extra-plugin-stealth": "^2.11.2",
     "request": "^2.88.2"
   }
 }
