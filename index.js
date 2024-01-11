@@ -25,7 +25,7 @@ async function fetchDataAndSendToDiscord() {
                 '--single-process',
             ],
             defaultViewport: chromium.defaultViewport,
-            executablePath: await chromium.executablePath(),
+            executablePath: '/usr/bin/chromium-browser',
             headless: chromium.headless,
             ignoreHTTPSErrors: true,
         };
