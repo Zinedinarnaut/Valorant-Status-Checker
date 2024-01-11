@@ -30,11 +30,13 @@ async function fetchDataAndSendToDiscord() {
             ignoreHTTPSErrors: true,
         };
 
-
         const browser = await puppeteerExtra.launch(
             process.env.NODE_ENV === 'development' ? devBrowser : prodBrowser
         );
         const page = await browser.newPage();
+
+        // Set User-Agent
+        await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36');
 
         const url = 'https://status.riotgames.com/valorant?region=ap&locale=en_US';
         const discordWebhookUrl = process.env.DISCORD_WEBHOOK_URL;
@@ -86,12 +88,8 @@ async function fetchDataAndSendToDiscord() {
             inProgressItems.forEach(item => {
                 discordEmbed.fields.push({
                     name: `**${item.title} - ${item.game}**`,
-                    value:
-                        `**Title:** ${item.serverStatus}
-                        **Description:**
-                        ${item.description}\n**Posted:** 
-                    ${item.platformsAffected}\n**Server Status:** 
-                    ${item.status}
+                    value: `**Title:** ${item.serverStatus}
+                        **Description:** ${item.description}\n**Posted:** ${item.platformsAffected}\n**Server Status:** ${item.status}
                     `,
                 });
             });
