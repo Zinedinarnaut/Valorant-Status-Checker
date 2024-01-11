@@ -14,12 +14,22 @@ async function fetchDataAndSendToDiscord() {
         };
 
         const prodBrowser = {
-            args: chromium.args,
+            args: [
+                ...chromium.args,
+                '--disable-gpu',
+                '--disable-dev-shm-usage',
+                '--disable-setuid-sandbox',
+                '--no-first-run',
+                '--no-sandbox',
+                '--no-zygote',
+                '--single-process',
+            ],
             defaultViewport: chromium.defaultViewport,
             executablePath: await chromium.executablePath(),
             headless: chromium.headless,
             ignoreHTTPSErrors: true,
         };
+
 
         const browser = await puppeteerExtra.launch(
             process.env.NODE_ENV === 'development' ? devBrowser : prodBrowser
